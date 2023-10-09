@@ -10,6 +10,13 @@ let id = 100;
 
 //BODYPARSER JSON: Middleware: Parse incoming JSON data
 app.use(express.json());
+
+app.use(function(req,res,next){
+    console.log("Hi, I am a filter");
+    //If the current middleware function does not end the request-response cycle, it must call next() to pass control
+    //to the next middleware function. Otherwise, the request will be left hanging.
+    return next();
+})
 let port = process.env.PORT||3001;
 
 //REST API: Define REST API endpoints
